@@ -1,6 +1,6 @@
 import axios from 'axios'
 // import { getToken } from './auth'
-const requestBaseURL = process.env.NODE_ENV === "development" ? '' : '/pro-api'
+const requestBaseURL = process.env.NODE_ENV === "development" ? '/pro-api' : '/pro-api'
 
 const request = axios.create({
   baseURL: requestBaseURL,

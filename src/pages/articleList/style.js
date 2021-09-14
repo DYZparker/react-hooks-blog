@@ -2,7 +2,6 @@ import styled from 'styled-components'
 
 export const ListWrapper = styled.div`
   background-color: #fff;
-  margin-top: 1.7rem;
   border-radius: .3rem;
   box-shadow: 0 1px 3px rgba(26,26,26,.1);
   padding: .3rem;
@@ -34,7 +33,7 @@ export const CardWrapper = styled.div`
   animation-fill-mode: both;
   animation-name: fadeInBottom;
   border-top: 1px lightgrey solid;
-  padding: 2rem .5rem;
+  padding: 1rem .5rem;
   .card-title a{
     color: #1e90ff;
     font-size: 1.5rem;
@@ -64,7 +63,6 @@ export const CardWrapper = styled.div`
     }
     p {
       text-align: left;
-      // text-indent: 2rem;
     }
   }
   .card-go{

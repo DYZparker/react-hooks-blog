@@ -1,10 +1,12 @@
 import React, {FC} from 'react';
 import { Col } from 'antd';
 import { BrowserRouter } from 'react-router-dom';
+import { ToTopOutlined } from '@ant-design/icons'
 import { Globalstyle, WrapperRow, WrapperBackTop } from './style';
 import RouterList from './router';
 import Header from './commons/header';
 import Footer from './commons/footer';
+import Sider from './commons/sider';
 
 const App: FC = () => (
   <div className="App">
@@ -17,14 +19,14 @@ const App: FC = () => (
             <RouterList />
           </Col>
           <Col className="main-right" xs={0} sm={0} md={0} lg={6} xl={4}>
-            {/* <Sider /> */}
+            <Sider />
           </Col>
         </WrapperRow>
         <Footer />
       {/* </Store> */}
     </BrowserRouter>
     <WrapperBackTop>
-      {/* <ToTopOutlined /> */}
+      <ToTopOutlined />
     </WrapperBackTop>
   </div>
 )

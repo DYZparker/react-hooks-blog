@@ -1,9 +1,18 @@
 import request from '../utils/request'
+import { ArticleListPayload } from '../types';
 
-interface ArticleListPayload {
-  page: Number
-  size: Number
-  search: {tags: String | undefined}
+export function getCommonInfoApi() {
+  return request({
+    url: '/common/info',
+    method: 'get'
+  })
+}
+
+export function getSideInfoApi() {
+  return request({
+    url: '/side/info',
+    method: 'get'
+  })
 }
 
 export function getArticleListApi(payload: ArticleListPayload) {

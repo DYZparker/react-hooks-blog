@@ -1,9 +1,7 @@
-import * as React from 'react'
+import { FC, useState, useMemo } from 'react'
 import { useHistory } from "react-router-dom"
 import { Menu } from 'antd'
-// import { IMenu, IStore, StContext } from '../../../store'
 
-// const { SubMenu } = Menu
 const menuList = [
   {
     "title": "首页",
@@ -11,31 +9,31 @@ const menuList = [
   },
   {
       "title": "H5",
-      "path": "/html"
+      "path": "/subject/html"
   },
   {
       "title": "JavaScript",
-      "path": "/javascript"
+      "path": "/subject/javascript"
   },
   {
       "title": "React",
-      "path": "/react"
+      "path": "/subject/react"
   },
   {
       "title": "Vue",
-      "path": "/vue"
+      "path": "/subject/vue"
   },
   {
       "title": "Flutter",
-      "path": "/flutter"
+      "path": "/subject/flutter"
   },
   {
       "title": "Node",
-      "path": "/node"
+      "path": "/subject/node"
   },
   {
       "title": "Other",
-      "path": "/other"
+      "path": "/subject/other"
   },
   {
       "title": "关于",
@@ -43,35 +41,14 @@ const menuList = [
   }
 ]
 
-//列表递归获取
-// const getMenuNodes = (list: Array<IMenu>) => {
-//   return list.map(item => {
-//     if (!item.children) {
-//       return (
-//         <Menu.Item key={item.path}>
-//             <span>{item.title}</span>
-//         </Menu.Item>
-//       )
-//     } else {
-//       return (
-//         <SubMenu key={item.path} title={<span>{item.title}</span>}>
-//           {getMenuNodes(item.children)}
-//         </SubMenu>
-//       )
-//     }
-//   })
-// }
-
-const MenuList: React.FC = () => {
+const MenuList: FC = () => {
   let history = useHistory()
-  const [pathName, clickTag] = React.useState(history.location.pathname)
-	// const store: IStore = React.useContext(StContext)
-  // const menuList = store.state.menuList
+  const [pathName, clickTag] = useState(history.location.pathname)
 
-	return React.useMemo(() => {
+	return useMemo(() => {
     return (
       <Menu 
-        onClick={(e: any) => {
+        onClick={(e) => {
           clickTag(e.key)
           history.push(e.key)
         }} 

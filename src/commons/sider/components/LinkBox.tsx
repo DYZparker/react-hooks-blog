@@ -1,36 +1,22 @@
-import { FC, useState, useEffect } from 'react'
+import { FC, useMemo } from 'react'
 import { Avatar, Tabs, List, Divider } from 'antd'
 import { LinkBoxWrapper } from '../style'
-import { getSideInfoApi } from '../../../api'
-import { ILink } from '../../../types';
+import { ILinkBox } from '../../../types';
 
 const { TabPane } = Tabs
-//保存首次加载请求回来的数据
-let info: Array<ILink>
 
-const LinkBox: FC = () => {
-	//更新state来重新渲染
-	const [, setInfoData] = useState();
+const LinkBox: FC<ILinkBox> = (props) => {
+	const { linkListData } = props
 
-	//第一次加载时请求side数据
-  useEffect(() => {
-		if(!info) {
-			getSideInfoApi().then((res) => {
-				const result = res.data.data
-				info = result.linkList
-				setInfoData(result.linkList)
-			})
-		}
-	},[])
-
-	return (info ? (
+	return useMemo(() => {
+		return (
 			<LinkBoxWrapper>
-				{console.log('Link渲染了', info)}
+				{console.log('Link渲染了')}
 				<Divider>相关链接</Divider>
 				<Tabs defaultActiveKey="javascript" animated={true} centered>
-					{info.map((item) => {
+					{linkListData.map((item) => {
 							return (
-								<TabPane tab={item.name} key={item.name}>
+								<TabPane tab={item.name} key={item._id}>
 									<List
 										itemLayout="horizontal"
 										dataSource={item.content}
@@ -50,8 +36,7 @@ const LinkBox: FC = () => {
 				</Tabs>
 			</LinkBoxWrapper>
 		)
-		: <></>
-	)
+	},[linkListData])
 }
 
 export default LinkBox

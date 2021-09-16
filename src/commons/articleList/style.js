@@ -1,14 +1,7 @@
 import styled from 'styled-components'
 
 export const ListWrapper = styled.div`
-  background-color: #fff;
-  border-radius: .3rem;
-  box-shadow: 0 1px 3px rgba(26,26,26,.1);
   padding: .3rem;
-  .list-header{
-    font-size: 1.1rem;
-    padding: 1rem;
-  }
   .list-more, .list-over{
     border-top: 1px lightgrey solid;
     color: #1e90ff;
@@ -39,7 +32,7 @@ export const CardWrapper = styled.div`
     font-size: 1.5rem;
   }
   .card-icon{
-    color: lightgrey;
+    color: grey;
     font-size: .9rem;
     padding: .8rem;
     display: flex;
@@ -53,7 +46,7 @@ export const CardWrapper = styled.div`
   }
   .card-context{
     line-height: 1.6rem;
-    margin: 1rem 0;
+    margin: .5rem 0;
     width: 100%;
     text-align: center;
     img{

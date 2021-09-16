@@ -7,23 +7,24 @@ import RouterList from './router';
 import Header from './commons/header';
 import Footer from './commons/footer';
 import Sider from './commons/sider';
+import { Store } from './store';
 
 const App: FC = () => (
   <div className="App">
     <Globalstyle />
     <BrowserRouter>
-      {/* <Store> */}
         <Header />
         <WrapperRow justify="center">
-          <Col className="main-left" xs={24} sm={24} md={24} lg={17} xl={11}>
-            <RouterList />
-          </Col>
-          <Col className="main-right" xs={0} sm={0} md={0} lg={6} xl={4}>
-            <Sider />
-          </Col>
+          <Store>
+            <Col className="main-left" xs={24} sm={24} md={24} lg={17} xl={14} xxl={11}>
+              <RouterList />
+            </Col>
+            <Col className="main-right" xs={0} sm={0} md={0} lg={6} xl={5} xxl={4}>
+              <Sider />
+            </Col>
+          </Store>
         </WrapperRow>
         <Footer />
-      {/* </Store> */}
     </BrowserRouter>
     <WrapperBackTop>
       <ToTopOutlined />

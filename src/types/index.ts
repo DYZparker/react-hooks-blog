@@ -10,7 +10,7 @@ interface ITopicList {
 	src: string
 }
 
-export interface IArticleList {
+export interface IArticle {
 	_id: string
 	date: string
 	title: string
@@ -19,9 +19,8 @@ export interface IArticleList {
 	tags: Array<string>
 }
 
-export interface IInfo {
-	topicList: Array<ITopicList>
-	articleList: Array<IArticleList>
+export interface IArticleListData {
+	articleList: Array<IArticle>
 	total: number
 	page: number
 }
@@ -30,26 +29,66 @@ export interface ITopic {
 	topicList: Array<ITopicList>
 }
 
-export interface IArticle {
-	articleList: Array<IArticleList>
-	total: number
-	scrollMore(): void
+export interface IProps extends IArticleListData{
+	tag: string
+	actionType: string
+  stataType: string
 }
 
-interface ILinkContent {
+export interface ILinkContent {
   id: number
   title: string
   src: string
   href: string
 }
 
+export interface ITag {
+  _id: string
+  title: string
+  color: string
+}
+
+export interface ITags {
+  tagListData: Array<ITag>
+}
+
+interface ISideData {
+  tagList: Array<ITag>
+  linkList: Array<ILink>
+}
+
 export interface ILink {
+  _id: string
   name: string
   content: Array<ILinkContent>
+}
+
+export interface ILinkBox {
+  linkListData: Array<ILink>
 }
 
 export interface ArticleListPayload {
   page: Number
   size: Number
   search: {tags: String | undefined}
+}
+
+export interface IState {
+  homeData: IArticleListData
+  subjectData: IArticleListData
+  sideData: ISideData
+}
+
+export interface IStore {
+  state: IState
+  dispatch?: React.Dispatch<IAction>
+}
+
+export interface IAction {
+  state: {
+    homeData?: IArticleListData
+    subjectData?: IArticleListData
+    sideData?: ISideData
+  }
+  type: string
 }

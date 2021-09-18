@@ -9,12 +9,12 @@ const Header: React.FC = () => {
 	return (
 		<HeaderWrapper>
 			<Row justify="center">
-				<Col xs={22} sm={22} md={10} lg={12} xl={8}>
+				<Col xs={0} sm={0} md={0} lg={6} xl={7} xxl={6}>
 					<Link to='/'>
 						<HeaderTitle><img src={logoImg} alt='logo' /></HeaderTitle>
 					</Link>
 				</Col>
-				<Col xs={2} sm={2} md={14} lg={12} xl={12}>
+				<Col xs={24} sm={24} md={24} lg={18} xl={12} xxl={9}>
 					<MenuList />
 				</Col>
 			</Row>

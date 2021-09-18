@@ -17,6 +17,7 @@ export interface IArticle {
 	img: string
 	summary: string
 	tags: Array<string>
+  content?: string
 }
 
 export interface IArticleListData {

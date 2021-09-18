@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const AboutMeWrapper = styled.div`
+export const AboutWrapper = styled.div`
   @keyframes fadeInBottom{
     from {
       opacity: 0;

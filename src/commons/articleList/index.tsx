@@ -9,10 +9,10 @@ import { StContext } from '../../store';
 const ArticleList: FC<IProps> = (props) => {
 	const store = useContext(StContext)
 	const { articleList, total, page, tag, actionType, stataType } = props
+	// console.log(props)
 
 	//按页请求列表数据并保存
 	const getArticleList = useCallback(() => {
-		console.log('请求数据')
 		getArticleListApi({page, size: 5, search:{tags: tag}}).then((res) => {
 			const result = res.data.data
 			store.dispatch!({
@@ -30,11 +30,14 @@ const ArticleList: FC<IProps> = (props) => {
 
 	//初始化文章列表数据
 	useEffect(() => {
-		console.log('初始化列表')
-		if(articleList.length === 0) {
+		//total为-1表示从初始化得来
+		//total为0表示从服务器查询为0
+		//若total初始为0会导致查询为0的文章无限循环请求
+		if((articleList.length === 0) && (total === -1)) {
+			console.log('===调用了初始请求===')
 			getArticleList()
 		}
-	},[articleList.length, getArticleList])
+	},[articleList.length, total, getArticleList])
 
 	//绑定下拉事件，事件函数showMore判断滚动条到页底则调用getArticleList加载下一页
 	useEffect(() => {
@@ -65,7 +68,14 @@ const ArticleList: FC<IProps> = (props) => {
     }
 	},[articleList, total, getArticleList])
 
-	return (articleList.length !== 0 ? (
+	if(total === 0) {
+		return (
+			<ListWrapper>
+				<div className="list-over"><SmileOutlined /> 暂无相关文章 <SmileOutlined /></div>
+			</ListWrapper>
+		)
+	}else if(articleList.length !== 0) {
+		return (
 			<ListWrapper>
 				{console.log('articleList渲染了')}
 				{
@@ -79,8 +89,10 @@ const ArticleList: FC<IProps> = (props) => {
 					<div className="list-more"><ArrowDownOutlined /> 下拉加载更多 <ArrowDownOutlined /></div>
 				}
 			</ListWrapper>
-		) : (<></>)
-	)
+		)
+	}else {
+		return <></>
+	}
 }
 
 export default ArticleList

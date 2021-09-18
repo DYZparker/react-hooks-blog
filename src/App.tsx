@@ -6,7 +6,7 @@ import { Globalstyle, WrapperRow, WrapperBackTop } from './style';
 import RouterList from './router';
 import Header from './commons/header';
 import Footer from './commons/footer';
-import Sider from './commons/sider';
+import Side from './commons/side';
 import { Store } from './store';
 
 const App: FC = () => (
@@ -20,7 +20,7 @@ const App: FC = () => (
               <RouterList />
             </Col>
             <Col className="main-right" xs={0} sm={0} md={0} lg={6} xl={5} xxl={4}>
-              <Sider />
+              <Side />
             </Col>
           </Store>
         </WrapperRow>

@@ -6,12 +6,12 @@ const initialState: IState = {
   homeData: {
     articleList: [],
     page: 0,
-    total: 0
+    total: -1
   },
   subjectData: {
     articleList: [],
     page: 0,
-    total: 0
+    total: -1
   },
   sideData: {
     tagList: [],
@@ -79,12 +79,12 @@ export const StContext = createContext<IStore>({
     homeData: {
       articleList: [],
       page: 0,
-      total: 0
+      total: -1
     },
     subjectData: {
       articleList: [],
       page: 0,
-      total: 0
+      total: -1
     },
     sideData: {
       tagList: [],

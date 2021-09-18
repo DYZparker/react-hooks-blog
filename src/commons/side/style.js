@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const SiderWrapper = styled.div`
+export const SideWrapper = styled.div`
   margin-left: 1.7rem;
 `
 

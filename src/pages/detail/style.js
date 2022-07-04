@@ -20,7 +20,8 @@ export const DetailWrapper = styled.div`
   padding: 1rem;
   overflow: hidden;
   img{
-    width: 100%;
+    // width: 100%;
+    height: 15rem;
   }
 `
 

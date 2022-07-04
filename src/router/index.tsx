@@ -15,7 +15,6 @@ const RouterList: FC = () => {
 				<Route path='/about' exact component={About}></Route>
 			</Switch>
 		</Suspense>
-        // <div>RouterList</div>
 	)
 }
 

@@ -13,11 +13,11 @@ const Tags: FC<ITags> = (props) => {
 			<TagsWrapper>
 				{console.log('Tags渲染了')}
 				<Divider>标签分类</Divider>
-				{tagListData.map((item) => {
+				{tagListData.reverse().map((item) => {
 					return (
 						<Tag icon={<TagOutlined />} color={item.color} key={item._id}>
-								<Link to={'/subject/' + item.title} >
-									{item.title}
+								<Link to={'/subject/' + item.tagName} >
+									{item.tagName}
 								</Link>
 						</Tag>
 					)

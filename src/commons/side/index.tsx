@@ -1,9 +1,10 @@
 import { FC, useEffect, useMemo, useContext } from 'react'
 import { SideWrapper } from './style'
-// import { Affix } from 'antd'
+import { Affix } from 'antd'
 import Author from './components/Author'
-import LinkBox from './components/LinkBox'
+import Links from './components/Links'
 import Tags from './components/Tags'
+import ArticleAnchor from './components/ArticleAnchor'
 import { StContext } from '../../store'
 import { getSideInfoApi } from '../../api'
 
@@ -11,19 +12,18 @@ const Side: FC = () => {
 
   //获取仓库数据并生成props传给子组件
 	const store = useContext(StContext)
-	const tagListData = store.state.sideData.tagList
-	const linkListData = store.state.sideData.linkList
+	const { tagList, linkList } = store.state.sideData
 
 	//第一次加载时请求side数据
   useEffect(() => {
 		getSideInfoApi().then((res) => {
-			const result = res.data.data
+			const result = res.data.result
 			store.dispatch!({
 				type: 'addSideData',
 				state: {
 					sideData: {
-						tagList: result.tagList,
-						linkList: result.linkList
+						tagList: result.tagList.res,
+						linkList: result.linkList.res
 					}
 				}
 			})
@@ -31,23 +31,24 @@ const Side: FC = () => {
 	},[store.dispatch])
 
 	return useMemo(() => {
-		if(tagListData.length !== 0) {
+		if(tagList.length !== 0) {
 			return (
 				<SideWrapper>
-				{console.log('side渲染了')}
+					{console.log('side渲染了')}
 					<Author />
-					{/* <Affix offsetTop={50}>
-						<> */}
-							<Tags tagListData={tagListData} />
-							<LinkBox linkListData={linkListData} />
-						{/* </>
-					</Affix> */}
+					<Affix offsetTop={50}>
+						<div>
+							<Tags tagListData={tagList} />
+							<Links linkListData={linkList} />
+							<ArticleAnchor/>
+						</div>
+					</Affix>
 				</SideWrapper>
 			)
 		}else {
 			return <></>
 		}
-	},[tagListData, linkListData])
+	},[tagList, linkList])
 }
 
 export default Side

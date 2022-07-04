@@ -1,4 +1,4 @@
-import { FC , useState, useEffect} from 'react';
+import { FC , useState, useEffect, useContext } from 'react';
 import { useHistory } from "react-router-dom";
 import moment from 'moment';
 import { Spin } from 'antd';
@@ -8,12 +8,14 @@ import marked from '../../utils/marked';
 import 'highlight.js/styles/gradient-dark.css';
 import { getArticleApi } from '../../api';
 import { IArticle }	from '../../types'
+import { StContext } from '../../store'
 
 const Detail: FC = () => {
+	const store = useContext(StContext)
+	const storeArticle = store.state.detailArticle
   const initialArticle: IArticle = {
     _id: "",
     title: "",
-    date: "",
     tags: [],
     img: "",
 		summary: "",
@@ -25,20 +27,30 @@ const Detail: FC = () => {
 
 	useEffect(() => {
 		window.scrollTo(0,0)
-		if(artcleId) {
+		if(storeArticle._id === artcleId){
+			setArticle(storeArticle)
+		}else if(artcleId) {
 			getArticleApi(artcleId).then((res) => {
-				const result = res.data.data.article
+				const result = res.data.result
 				setArticle(result)
+				store.dispatch!({
+					type: 'addDetailArticle',
+					state: {
+						detailArticle: result
+					}
+				})
 			})
 		}
-	},[artcleId])
+	},[artcleId, storeArticle, store.dispatch])
 	
 	if(article._id) {
+		// 截取_id的前8位十六进制时间戳转换为十进制
+		const timeStr = article._id.toString().slice(0, 8)
 		return (
 			<DetailWrapper>
 				<ArtTitle>{article.title}</ArtTitle>
 				<ArtIcon>
-					<i><CalendarOutlined />{moment(article.date).format('YYYY-MM-DD')}</i>
+					<i><CalendarOutlined />{moment(parseInt(timeStr, 16)*1000).format('YYYY-MM-DD')}</i>
 					<i><TagsOutlined />{article.tags.join('、')}</i>
 				</ArtIcon>
 				{article.img ? <img src={article.img} alt={article.title}></img> : <></>}

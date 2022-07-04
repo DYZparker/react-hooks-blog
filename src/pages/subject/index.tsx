@@ -36,7 +36,7 @@ const Subject: FC = () =>{
 					subjectData: {
 						articleList: [],
 						total: -1,
-						page: 0
+						page: 1
 					}
 				}
 			})

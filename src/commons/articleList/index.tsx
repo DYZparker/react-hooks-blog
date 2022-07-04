@@ -13,15 +13,15 @@ const ArticleList: FC<IProps> = (props) => {
 
 	//按页请求列表数据并保存
 	const getArticleList = useCallback(() => {
-		getArticleListApi({page, size: 5, search:{tags: tag}}).then((res) => {
-			const result = res.data.data
+		getArticleListApi({page, size: 5, search:{tagName: tag}}).then((res) => {
+			const { list, total } = res.data.result
 			store.dispatch!({
 				type: actionType,
 				state: {
 					[stataType]: {
-						articleList: result.articleList,
-						total: result.total,
-						page: result.page + 1
+						articleList: list,
+						total,
+						page: page + 1
 					}
 				}
 			})
@@ -78,6 +78,7 @@ const ArticleList: FC<IProps> = (props) => {
 		return (
 			<ListWrapper>
 				{console.log('articleList渲染了')}
+				{window.scrollTo(0,0)}
 				{
 					articleList.map((item) => {
 						return <ArticleCard key={item._id} {...item} />

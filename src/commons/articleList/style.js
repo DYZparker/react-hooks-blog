@@ -50,9 +50,10 @@ export const CardWrapper = styled.div`
     width: 100%;
     text-align: center;
     img{
-      border: 1px lightgrey solid;
+      // border: 1px lightgrey solid;
       border-radius: .3rem;
-      width: 90%;
+      // width: 90%;
+      height: 15rem;
     }
     p {
       text-align: left;

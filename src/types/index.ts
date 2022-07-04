@@ -4,7 +4,7 @@ export interface IMenu {
 	children?: Array<IMenu>
 }
 interface ITopicList {
-	_id: string
+	id: string
 	alt: string
 	href: string
 	src: string
@@ -12,7 +12,6 @@ interface ITopicList {
 
 export interface IArticle {
 	_id: string
-	date: string
 	title: string
 	img: string
 	summary: string
@@ -36,16 +35,17 @@ export interface IProps extends IArticleListData{
   stataType: string
 }
 
-export interface ILinkContent {
-  id: number
-  title: string
-  src: string
+export interface ILink {
+  _id: string
+  linkName: string
+  describe: string
   href: string
+  img: string
 }
 
 export interface ITag {
   _id: string
-  title: string
+  tagName: string
   color: string
 }
 
@@ -58,26 +58,21 @@ interface ISideData {
   linkList: Array<ILink>
 }
 
-export interface ILink {
-  _id: string
-  name: string
-  content: Array<ILinkContent>
-}
-
-export interface ILinkBox {
+export interface ILinks {
   linkListData: Array<ILink>
 }
 
 export interface ArticleListPayload {
   page: Number
   size: Number
-  search: {tags: String | undefined}
+  search: Object
 }
 
 export interface IState {
   homeData: IArticleListData
   subjectData: IArticleListData
   sideData: ISideData
+  detailArticle: IArticle
 }
 
 export interface IStore {
@@ -90,6 +85,23 @@ export interface IAction {
     homeData?: IArticleListData
     subjectData?: IArticleListData
     sideData?: ISideData
+    detailArticle?: IArticle
   }
   type: string
 }
+// export class InitState {
+//   homeData: IArticleListData = {
+//     articleList: [],
+//     page: 1,
+//     total: -1
+//   }
+//   subjectData: IArticleListData = {
+//     articleList: [],
+//     page: 1,
+//     total: -1
+//   }
+//   sideData: ISideData = {
+//     tagList: [],
+//     linkList: []
+//   }
+// }
